@@ -10,27 +10,27 @@ nrow(pdata)
 spl = sample.split(pdata$Overall_Auth_Status, SplitRatio = 0.7)
 trainSparse = subset(pdata, spl == TRUE)
 testSparse = subset(pdata, spl == FALSE)
-
-
-
-## trainSparse now has 700 rows (70%) 
-nrow(trainSparse)
-str(testSparse)
-## testSparse now has 300 rows (30%)
-nrow(testSparse)
-# CART Model
-library(rpart)
-library(rpart.plot)
-tweetCART <- rpart(Overall_Auth_Status ~ feed_id_full_path + Diagnosis_Name + Provider + SibSp, data=trainSparse, method="class")
-prp(tweetCART)
-
-
-# Predict using the trainig set. Because the CART tree assigns the same predicted probability to each leaf node and there are a small number of leaf nodes compared to data points, we expect exactly the same maximum predicted probability.
-predictCart <- predict(tweetCART, newdata=testSparse, type="class")
-summary(predictCart)
-
-str(predictCart)
-str(testSparse$Overall_Auth_Status)
+# 
+# 
+# 
+# ## trainSparse now has 700 rows (70%) 
+# nrow(trainSparse)
+# str(testSparse)
+# ## testSparse now has 300 rows (30%)
+# nrow(testSparse)
+# # CART Model
+# library(rpart)
+# library(rpart.plot)
+# tweetCART <- rpart(Overall_Auth_Status ~ feed_id_full_path + Diagnosis_Name + Provider + SibSp, data=trainSparse, method="class")
+# prp(tweetCART)
+# 
+# 
+# # Predict using the trainig set. Because the CART tree assigns the same predicted probability to each leaf node and there are a small number of leaf nodes compared to data points, we expect exactly the same maximum predicted probability.
+# predictCart <- predict(tweetCART, newdata=testSparse, type="class")
+# summary(predictCart)
+# 
+# str(predictCart)
+# str(testSparse$Overall_Auth_Status)
 
 ## accuracy test
 confusionMatrix = table(testSparse$Overall_Auth_Status, predictCart)
