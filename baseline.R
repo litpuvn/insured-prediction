@@ -1,15 +1,22 @@
 library(caTools)
+library(plyr)
 
 set.seed(456)
+setwd("/home/long/TTU-SOURCES/insured-prediction")
 
-pdata = read.csv("/home/long/TTU-SOURCES/insured-prediction/data/pdata.csv", header = TRUE)
+pdata = read.csv("data/pdata.csv", header = TRUE)
 
-pdata = pdata[sample(nrow(pdata), 1000), ]
-nrow(pdata)
+#pdata = pdata[sample(nrow(pdata), 1000), ]
+#nrow(pdata)
 # create split with 70% is TRUE (this will be used as training set)
 spl = sample.split(pdata$Overall_Auth_Status, SplitRatio = 0.7)
 trainSparse = subset(pdata, spl == TRUE)
 testSparse = subset(pdata, spl == FALSE)
+
+write.csv(trainSparse, file = "data/train.csv", row.names=FALSE)
+write.csv(testSparse, file = "data/test.csv", row.names=FALSE)
+
+
 # 
 # 
 # 
