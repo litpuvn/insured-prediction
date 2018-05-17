@@ -7,7 +7,7 @@ diagnosis_codes = {}
 diagnosis_names = {}
 
 # read all training files and form rules
-with open('data/archive/Diagnosis_Code_Approve.csv', newline='') as csvfile:
+with open('data/training/Diagnosis_Code_Approve.csv', newline='') as csvfile:
     diagnosis_reader = csv.reader(csvfile, delimiter=',')
     header = True
     for row in diagnosis_reader:
@@ -16,7 +16,7 @@ with open('data/archive/Diagnosis_Code_Approve.csv', newline='') as csvfile:
             continue
         diagnosis_codes[row[0]] = 1
 
-with open('data/archive/Diagnosis_Code_Deny.csv', newline='') as csvfile:
+with open('data/training/Diagnosis_Code_Deny.csv', newline='') as csvfile:
     diagnosis_reader = csv.reader(csvfile, delimiter=',')
     header = True
     for row in diagnosis_reader:
@@ -25,7 +25,7 @@ with open('data/archive/Diagnosis_Code_Deny.csv', newline='') as csvfile:
             continue
         diagnosis_codes[row[0]] = 0
 
-with open('data/archive/Diagnosis_Name_Approve.csv', newline='') as csvfile:
+with open('data/training/Diagnosis_Name_Approve.csv', newline='') as csvfile:
     diagnosis_reader = csv.reader(csvfile, delimiter=',')
     header = True
     for row in diagnosis_reader:
@@ -34,7 +34,7 @@ with open('data/archive/Diagnosis_Name_Approve.csv', newline='') as csvfile:
             continue
         diagnosis_names[row[0]] = 1
 
-with open('data/archive/Diagnosis_Name_Deny.csv', newline='') as csvfile:
+with open('data/training/Diagnosis_Name_Deny.csv', newline='') as csvfile:
     diagnosis_reader = csv.reader(csvfile, delimiter=',')
     header = True
     for row in diagnosis_reader:
@@ -43,7 +43,7 @@ with open('data/archive/Diagnosis_Name_Deny.csv', newline='') as csvfile:
             continue
         diagnosis_names[row[0]] = 0
 
-with open('data/archive/provier_approve.csv', newline='') as csvfile:
+with open('data/training/provier_approve.csv', newline='') as csvfile:
     diagnosis_reader = csv.reader(csvfile, delimiter=',')
     header = True
     for row in diagnosis_reader:
@@ -52,7 +52,7 @@ with open('data/archive/provier_approve.csv', newline='') as csvfile:
             continue
         provider_names[row[0]] = 1
 
-with open('data/archive/provier_deny.csv', newline='') as csvfile:
+with open('data/training/provier_deny.csv', newline='') as csvfile:
     diagnosis_reader = csv.reader(csvfile, delimiter=',')
     header = True
     for row in diagnosis_reader:
@@ -61,7 +61,7 @@ with open('data/archive/provier_deny.csv', newline='') as csvfile:
             continue
         provider_names[row[0]] = 0
 
-with open('data/archive/Region_Approve.csv', newline='') as csvfile:
+with open('data/training/Region_Approve.csv', newline='') as csvfile:
     diagnosis_reader = csv.reader(csvfile, delimiter=',')
     header = True
     for row in diagnosis_reader:
@@ -70,7 +70,7 @@ with open('data/archive/Region_Approve.csv', newline='') as csvfile:
             continue
         regions[row[0]] = 1
 
-with open('data/archive/Region_Deny.csv', newline='') as csvfile:
+with open('data/training/Region_Deny.csv', newline='') as csvfile:
     diagnosis_reader = csv.reader(csvfile, delimiter=',')
     header = True
     for row in diagnosis_reader:
@@ -124,5 +124,8 @@ recall = TP / (TP + FN)
 fscore = (2*TP) / (2*TP + FP + FN)
 accuracy = (TP + FN) / (TP + TN + FN + FP)
 
-print('precision:', precision, ';recall:', recall, ';f-score:', fscore, ';accuracy:', accuracy)
+print('total test set:', len(predicted))
+
+print('precision:', precision, ';recall:', recall)
+print('f-score:', fscore, ';accuracy:', accuracy)
 
